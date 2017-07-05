@@ -30,7 +30,7 @@ public class sprUsersDAO implements beanDAO<TSprUsers, Long> {
         this.conn = conn;
     }
 
-    public EntityManager em = Persistence.createEntityManagerFactory("helpdesk-jpa-example").createEntityManager();
+    //public EntityManager em = Persistence.createEntityManagerFactory("helpdesk-jpa-example").createEntityManager();
     private final Logger log = Logger.getLogger(getClass().getName());
 
     @Override
