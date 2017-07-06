@@ -7,6 +7,7 @@ package servlet_pkg;
 
 import DAO.sprUsersDAO;
 import beans.TSprUsers;
+import interfaces.HibernateUtil;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
@@ -19,6 +20,7 @@ import java.util.logging.Logger;
 
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
+import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.HttpMethodConstraint;
 import javax.servlet.annotation.ServletSecurity;
@@ -27,6 +29,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
+import org.hibernate.Session;
 
 /**
  *
@@ -51,16 +54,25 @@ public class userList extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     private Logger log = Logger.getLogger(getClass().getName());
+    private Session session1;
+    
+    @Override
+    public void init(ServletConfig config) throws ServletException {
+        super.init(config); //To change body of generated methods, choose Tools | Templates.
+        session1 = HibernateUtil.getSessionFactory().openSession();
+    }
+    
+    
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, NamingException, SQLException {
 
-        InitialContext initContext = new InitialContext();
-        DataSource dataSource = (DataSource) initContext.lookup("java:/helpDeskDS");
-        Connection conn = dataSource.getConnection();
-        log.info(dataSource.toString());
+        //InitialContext initContext = new InitialContext();
+        //DataSource dataSource = (DataSource) initContext.lookup("java:/helpDeskDS");
+        //Connection conn = dataSource.getConnection();
+        //log.info(dataSource.toString());
         log.info("servlet begin");
-        List<TSprUsers> userList = (new sprUsersDAO(conn)).getList();
+        List<TSprUsers> userList = (new sprUsersDAO(this.session1)).getList();
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             userList.forEach((item) -> {
