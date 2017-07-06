@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 06.07.2017 21:54:31 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="beans.TSprCommentType" table="t_spr_comment_type" schema="public" optimistic-lock="version">
+        <comment>&#210;&#232;&#239;&#251; &#234;&#238;&#236;&#236;&#229;&#237;&#242;&#224;&#240;&#232;&#229;&#226; &#234;
+        &#232;&#237;&#246;&#232;&#228;&#229;&#237;&#242;&#224;&#236;</comment>
+        <id name="id" type="long">
+            <column name="id" />
+            <generator class="assigned" />
+        </id>
+        <property name="FName" type="string">
+            <column name="f_name" length="250" not-null="true">
+                <comment>&#205;&#224;&#232;&#236;&#229;&#237;&#238;&#226;&#224;&#237;&#232;&#229;</comment>
+            </column>
+        </property>
+        <set name="TIncidentComments" table="t_incident_comment" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="f_comment_type_id" not-null="true">
+                    <comment>&#202;&#238;&#228; &#242;&#232;&#239;&#224; &#234;&#238;&#236;&#236;&#229;&#237;&#242;&#224;&#240;&#232;&#255;</comment>
+                </column>
+            </key>
+            <one-to-many class="beans.TIncidentComment" />
+        </set>
+        <set name="TIncidentComments_1" table="t_incident_comment" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="f_comment_type_id" not-null="true">
+                    <comment>&#202;&#238;&#228; &#242;&#232;&#239;&#224; &#234;&#238;&#236;&#236;&#229;&#237;&#242;&#224;&#240;&#232;&#255;</comment>
+                </column>
+            </key>
+            <one-to-many class="beans.TIncidentComment" />
+        </set>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 06.07.2017 21:54:31 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="beans.TFirmService" table="t_firm_service" schema="public" optimistic-lock="version">
+        <comment>&#211;&#241;&#235;&#243;&#227;&#232; &#234;&#235;&#232;&#229;&#237;&#242;&#224;</comment>
+        <id name="id" type="long">
+            <column name="id" />
+            <generator class="assigned" />
+        </id>
+        <property name="FFirmId" type="long">
+            <column name="f_firm_id" not-null="true">
+                <comment>&#202;&#238;&#228; &#244;&#232;&#240;&#236;&#251;</comment>
+            </column>
+        </property>
+        <property name="FServiceId" type="long">
+            <column name="f_service_id" not-null="true">
+                <comment>&#202;&#238;&#228; &#243;&#241;&#235;&#243;&#227;&#232;</comment>
+            </column>
+        </property>
+    </class>
+</hibernate-mapping>

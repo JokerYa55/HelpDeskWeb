@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 06.07.2017 21:54:31 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="beans.TFirmUsers" table="t_firm_users" schema="public" optimistic-lock="version">
+        <comment>&#207;&#240;&#232;&#226;&#255;&#231;&#234;&#224; &#239;&#238;&#235;&#252;&#231;&#238;&#226;&#224;&#242;&#229;&#235;&#229;&#233; &#234;
+        &#244;&#232;&#240;&#236;&#224;&#236;</comment>
+        <id name="id" type="long">
+            <column name="id" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="TSprFirm" class="beans.TSprFirm" fetch="select">
+            <column name="f_firm_id" not-null="true">
+                <comment>&#202;&#238;&#228; &#244;&#232;&#240;&#236;&#251;</comment>
+            </column>
+        </many-to-one>
+        <many-to-one name="TSprUsers" class="beans.TSprUsers" fetch="select">
+            <column name="f_user_id" not-null="true">
+                <comment>&#234;&#238;&#228; &#239;&#238;&#235;&#252;&#231;&#238;&#226;&#224;&#242;&#229;&#235;&#255;</comment>
+            </column>
+        </many-to-one>
+    </class>
+</hibernate-mapping>

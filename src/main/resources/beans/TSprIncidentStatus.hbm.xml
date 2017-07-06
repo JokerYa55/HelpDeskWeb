@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 06.07.2017 21:54:31 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="beans.TSprIncidentStatus" table="t_spr_incident_status" schema="public" optimistic-lock="version">
+        <comment>&#209;&#239;&#240;&#224;&#226;&#238;&#247;&#237;&#232;&#234; &#241;&#242;&#224;&#242;&#243;&#241;&#238;&#226;
+        &#232;&#237;&#246;&#232;&#228;&#229;&#237;&#242;&#238;&#226;</comment>
+        <id name="id" type="long">
+            <column name="id" />
+            <generator class="assigned" />
+        </id>
+        <property name="FName" type="string">
+            <column name="f_name" not-null="true">
+                <comment>&#205;&#224;&#232;&#236;&#229;&#237;&#238;&#226;&#224;&#237;&#232;&#229;</comment>
+            </column>
+        </property>
+        <set name="TIncidents" table="t_incident" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="f_incident_status_id" not-null="true">
+                    <comment>&#202;&#238;&#228; &#241;&#242;&#224;&#242;&#243;&#241;&#224; &#232;&#237;&#246;&#232;&#228;&#229;&#237;&#242;&#224;</comment>
+                </column>
+            </key>
+            <one-to-many class="beans.TIncident" />
+        </set>
+        <set name="TIncidents_1" table="t_incident" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="f_incident_status_id" not-null="true">
+                    <comment>&#202;&#238;&#228; &#241;&#242;&#224;&#242;&#243;&#241;&#224; &#232;&#237;&#246;&#232;&#228;&#229;&#237;&#242;&#224;</comment>
+                </column>
+            </key>
+            <one-to-many class="beans.TIncident" />
+        </set>
+    </class>
+</hibernate-mapping>

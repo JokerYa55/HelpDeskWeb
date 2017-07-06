@@ -1,0 +1,80 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 06.07.2017 21:54:31 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="beans.TSprUsers" table="t_spr_users" schema="public" optimistic-lock="version">
+        <comment>&#241;&#239;&#240;&#224;&#226;&#238;&#247;&#237;&#232;&#234; &#239;&#238;&#235;&#252;&#231;&#238;&#226;&#224;&#242;&#229;&#235;&#229;&#233;</comment>
+        <id name="id" type="long">
+            <column name="id" />
+            <generator class="assigned" />
+        </id>
+        <property name="FLogin" type="string">
+            <column name="f_login" length="500" not-null="true" unique="true">
+                <comment>&#235;&#238;&#227;&#232;&#237;</comment>
+            </column>
+        </property>
+        <property name="FPass" type="string">
+            <column name="f_pass" length="20" not-null="true">
+                <comment>&#239;&#224;&#240;&#238;&#235;&#252;</comment>
+            </column>
+        </property>
+        <property name="FName" type="string">
+            <column name="f_name" length="500" not-null="true">
+                <comment>&#200;&#236;&#255;</comment>
+            </column>
+        </property>
+        <set name="TFirmUserses" table="t_firm_users" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="f_user_id" not-null="true">
+                    <comment>&#234;&#238;&#228; &#239;&#238;&#235;&#252;&#231;&#238;&#226;&#224;&#242;&#229;&#235;&#255;</comment>
+                </column>
+            </key>
+            <one-to-many class="beans.TFirmUsers" />
+        </set>
+        <set name="TIncidents" table="t_incident" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="f_user_id">
+                    <comment>&#202;&#238;&#228; &#239;&#238;&#235;&#252;&#231;&#238;&#226;&#224;&#242;&#229;&#235;&#255;
+                    &#241;&#238;&#231;&#228;&#224;&#226;&#248;&#229;&#227;&#238; &#232;&#237;&#246;&#232;&#228;&#229;&#237;&#242;</comment>
+                </column>
+            </key>
+            <one-to-many class="beans.TIncident" />
+        </set>
+        <set name="TIncidentComments" table="t_incident_comment" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="f_user_id" not-null="true">
+                    <comment>&#202;&#238;&#228; &#239;&#238;&#235;&#252;&#231;&#238;&#226;&#224;&#242;&#229;&#235;&#255;
+                    &#241;&#238;&#231;&#228;&#224;&#226;&#248;&#229;&#227;&#238; &#234;&#238;&#236;&#236;&#229;&#237;&#242;&#224;&#240;&#232;&#233;</comment>
+                </column>
+            </key>
+            <one-to-many class="beans.TIncidentComment" />
+        </set>
+        <set name="TFirmUserses_1" table="t_firm_users" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="f_user_id" not-null="true">
+                    <comment>&#234;&#238;&#228; &#239;&#238;&#235;&#252;&#231;&#238;&#226;&#224;&#242;&#229;&#235;&#255;</comment>
+                </column>
+            </key>
+            <one-to-many class="beans.TFirmUsers" />
+        </set>
+        <set name="TIncidents_1" table="t_incident" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="f_user_id">
+                    <comment>&#202;&#238;&#228; &#239;&#238;&#235;&#252;&#231;&#238;&#226;&#224;&#242;&#229;&#235;&#255;
+                    &#241;&#238;&#231;&#228;&#224;&#226;&#248;&#229;&#227;&#238; &#232;&#237;&#246;&#232;&#228;&#229;&#237;&#242;</comment>
+                </column>
+            </key>
+            <one-to-many class="beans.TIncident" />
+        </set>
+        <set name="TIncidentComments_1" table="t_incident_comment" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="f_user_id" not-null="true">
+                    <comment>&#202;&#238;&#228; &#239;&#238;&#235;&#252;&#231;&#238;&#226;&#224;&#242;&#229;&#235;&#255;
+                    &#241;&#238;&#231;&#228;&#224;&#226;&#248;&#229;&#227;&#238; &#234;&#238;&#236;&#236;&#229;&#237;&#242;&#224;&#240;&#232;&#233;</comment>
+                </column>
+            </key>
+            <one-to-many class="beans.TIncidentComment" />
+        </set>
+    </class>
+</hibernate-mapping>
