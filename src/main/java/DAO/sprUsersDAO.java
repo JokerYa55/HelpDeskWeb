@@ -14,9 +14,6 @@ import java.sql.Statement;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.logging.Logger;
-import javax.persistence.EntityManager;
-import javax.persistence.Persistence;
-import javax.persistence.TypedQuery;
 
 /**
  *
