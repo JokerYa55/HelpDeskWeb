@@ -4,6 +4,7 @@
     Author     : vasil
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <sql:query var="listUsers" dataSource="java:/helpDeskDS">
@@ -16,6 +17,7 @@
         <title>JSP Page</title>
     </head>
     <body>
+        ${list}<br>
         <div align="center">
             <table border="1" cellpadding="5">
                 <caption><h2>List of users</h2></caption>
@@ -23,10 +25,10 @@
                     <th>Name</th>
                     <th>Password</th>
                 </tr>
-                <c:forEach var="user" items="${listUsers.rows}">
+                <c:forEach var="user" items="${list}">
                     <tr>
-                        <td><c:out value="${user.f_name}" /></td>
-                    <td><c:out value="${user.f_pass}" /></td>
+                        <td>${user.FName}</td>
+                        <td>${user.FPass}</td>
                     </tr>
                 </c:forEach>
             </table>
