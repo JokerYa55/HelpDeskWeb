@@ -6,19 +6,16 @@
 package servlet_pkg;
 
 import DAO.sprUsersDAO;
+import DAO.tIncidentDAO;
+import beans.TIncident;
 import beans.TSprUsers;
 import interfaces.HibernateUtil;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.sql.Connection;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
@@ -28,7 +25,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.sql.DataSource;
 import org.hibernate.Session;
 
 /**
@@ -55,14 +51,12 @@ public class userList extends HttpServlet {
      */
     private Logger log = Logger.getLogger(getClass().getName());
     private Session session1;
-    
+
     @Override
     public void init(ServletConfig config) throws ServletException {
         super.init(config); //To change body of generated methods, choose Tools | Templates.
         session1 = HibernateUtil.getSessionFactory().openSession();
     }
-    
-    
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, NamingException, SQLException {
@@ -73,28 +67,32 @@ public class userList extends HttpServlet {
         //log.info(dataSource.toString());
         log.info("servlet begin");
         List<TSprUsers> userList = (new sprUsersDAO(this.session1)).getList();
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            userList.forEach((item) -> {
-                out.println("" + item.getFName());
-            });
-
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet userList</title>");
-            out.println("</head>");
-            out.println("<body>");
-            int count = 1;
-
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<h1>Servlet userList at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
+        List<TIncident> incidentList = (new tIncidentDAO(session1)).getList();
+        request.setAttribute("list", userList);
+        request.setAttribute("incidentList", incidentList);
+        getServletContext().getRequestDispatcher("/jsp/admin/userList.jsp").forward(request, response);
+//        List<TSprUsers> userList = (new sprUsersDAO(this.session1)).getList();
+//        response.setContentType("text/html;charset=UTF-8");
+//        try (PrintWriter out = response.getWriter()) {
+//            userList.forEach((item) -> {
+//                out.println("" + item.getFName());
+//            });
+//
+//            out.println("<!DOCTYPE html>");
+//            out.println("<html>");
+//            out.println("<head>");
+//            out.println("<title>Servlet userList</title>");
+//            out.println("</head>");
+//            out.println("<body>");
+//            int count = 1;
+//
+//            /* TODO output your page here. You may use following sample code. */
+//            out.println("<h1>Servlet userList at " + request.getContextPath() + "</h1>");
+//            out.println("</body>");
+//            out.println("</html>");
     }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+// <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
      *
@@ -108,10 +106,14 @@ public class userList extends HttpServlet {
             throws ServletException, IOException {
         try {
             processRequest(request, response);
+
         } catch (NamingException ex) {
-            Logger.getLogger(userList.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(userList.class
+                    .getName()).log(Level.SEVERE, null, ex);
+
         } catch (SQLException ex) {
-            Logger.getLogger(userList.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(userList.class
+                    .getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -128,10 +130,14 @@ public class userList extends HttpServlet {
             throws ServletException, IOException {
         try {
             processRequest(request, response);
+
         } catch (NamingException ex) {
-            Logger.getLogger(userList.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(userList.class
+                    .getName()).log(Level.SEVERE, null, ex);
+
         } catch (SQLException ex) {
-            Logger.getLogger(userList.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(userList.class
+                    .getName()).log(Level.SEVERE, null, ex);
         }
     }
 

@@ -7,9 +7,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<sql:query var="listUsers" dataSource="java:/helpDeskDS">
-    SELECT id, f_login, f_pass, f_name FROM public.t_spr_users;
-</sql:query>
+
 
 <html>
     <head>
@@ -17,9 +15,8 @@
         <title>JSP Page</title>
     </head>
     <body>
-        ${list}<br>
         <div align="center">
-            <table border="1" cellpadding="5">
+            <table cellpadding="5">
                 <caption><h2>List of users</h2></caption>
                 <tr>
                     <th>Name</th>
@@ -32,6 +29,31 @@
                     </tr>
                 </c:forEach>
             </table>
+
+            <table>
+                <c:forEach var="Item" items="${incidentList}">
+                    <tr>
+                        <td>${Item.id}</td>
+                        <td>${Item.FDate}</td>
+                        <td>${Item.FComment}</td>
+                        <td>
+                            <table>
+                                <c:forEach var="commentItem" items="${Item.TIncidentComments}">
+                                    <tr>
+                                        <td>
+                                            ${commentItem.id}<br>
+                                        </td>
+                                        <td>
+                                            ${commentItem.FComment}<br>
+                                        </td>
+                                    </tr>
+                                </c:forEach>
+                            </table>
+                        </td>
+                    </tr>
+                </c:forEach>
+            </table>
+
         </div>
     </body>
 </html>
