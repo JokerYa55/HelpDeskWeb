@@ -12,6 +12,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" type="text/css" href="css/main.css"/>
         <title>JSP Page</title>
     </head>
     <body>
@@ -30,16 +31,16 @@
                 </c:forEach>
             </table>
 
-            <table>
+            <table id="idIncidentTable">
                 <c:forEach var="Item" items="${incidentList}">
-                    <tr>
+                    <tr class="classMainTable">
                         <td>${Item.id}</td>
                         <td>${Item.FDate}</td>
                         <td>${Item.FComment}</td>
                         <td>
                             <table>
                                 <c:forEach var="commentItem" items="${Item.TIncidentComments}">
-                                    <tr>
+                                    <tr class="classSecondTable">
                                         <td>
                                             ${commentItem.id}<br>
                                         </td>
