@@ -15,3 +15,7 @@ tr.classMainTable {
 tr.classSecondTable{
     background-color: chartreuse;
 }
+
+div.classIncidentHeader{
+    font-style: oblique;
+}
